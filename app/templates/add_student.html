@@ -1,0 +1,49 @@
+{% extends 'admin_dashboard.html' %}
+{% block content %}
+<h3 style="font-family: Arial, sans-serif; color: #2c3e50; font-size: 24px; margin-bottom: 20px;">ADD STUDENT</h3>
+
+<form action="" method="POST" style="max-width: 500px; margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Enter Full Name" 
+           style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+
+    <input type="number" name="reg_no" placeholder="Enter Registration Number" 
+           style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+
+    <input type="text" name="year_of_study" placeholder="Enter Year" 
+           style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+
+    <input type="text" name="department" placeholder="Enter Department" 
+           style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+
+    <input type="text" name="clg_name" placeholder="Enter College Name" 
+           style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+
+    <input type="text" name="university_name" placeholder="Enter University Name" 
+           style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+
+    <input type="text" name="dob" id="dob" placeholder="DD/MM/YYYY" maxlength="10"
+           style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+
+    <input type="submit" value="Add Student" 
+           style="padding: 12px; font-size: 16px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; transition: background 0.3s;"
+           onmouseover="this.style.backgroundColor='#2980b9'" 
+           onmouseout="this.style.backgroundColor='#3498db'">
+</form>
+
+<script>
+// Automatically add "/" in DOB input (DD/MM/YYYY)
+const dobInput = document.getElementById('dob');
+
+dobInput.addEventListener('input', function(e) {
+    let value = dobInput.value.replace(/\D/g, ''); // Remove non-digit characters
+    if (value.length > 2 && value.length <= 4) {
+        value = value.slice(0,2) + '/' + value.slice(2);
+    } else if (value.length > 4) {
+        value = value.slice(0,2) + '/' + value.slice(2,4) + '/' + value.slice(4,8);
+    }
+    dobInput.value = value;
+});
+</script>
+
+{% endblock %}

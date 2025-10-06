@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Results</title>
+  <style>
+    /* Body */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e6f2ea;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Container */
+    .container {
+      width: 90%;
+      max-width: 750px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: 0.3s;
+    }
+
+    .container:hover {
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    /* Headings */
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+      font-weight: 600;
+      word-wrap: break-word;
+    }
+
+    h1#clg_name {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #27ae60;
+    }
+
+    /* Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 15px;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #b3d6b1;
+      border-radius: 10px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #27ae60;
+      box-shadow: 0 0 5px rgba(39, 174, 96, 0.3);
+    }
+
+    /* Button */
+    button, #printBtn {
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      background-color: #27ae60;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover, #printBtn:hover {
+      background-color: #1e8449;
+    }
+
+    /* Error message */
+    .error {
+      margin-top: 10px;
+      text-align: center;
+      color: #c0392b;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    /* Results section */
+    .results {
+      margin-top: 25px;
+    }
+
+    .results h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
+
+    .results .image-box {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .results img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 5px;
+      background: #f9fff9;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .results img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    /* Print button */
+    #printBtn {
+      display: block;
+      width: 160px;
+      margin: 25px auto 0;
+    }
+
+    /* Notification Box */
+    .notification_box {
+      width: 90%;
+      max-width: 750px;
+      margin: 40px auto;
+      background: #ffffff;
+      border: 2px solid #2c3e50;
+      border-radius: 10px;
+      box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .notification_header {
+      background: #2c3e50;
+      color: #fff;
+      padding: 12px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    .notification_item {
+      padding: 15px 20px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+      transition: background 0.3s;
+    }
+
+    .notification_item:last-child {
+      border-bottom: none;
+    }
+
+    .notification_item:hover {
+      background: #f4f9f4;
+    }
+
+    .notification_item h3 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    .notification_item p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #7f8c8d;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .results h2 {
+        font-size: 1.2rem;
+      }
+
+      button, #printBtn {
+        font-size: 0.95rem;
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        margin: 20px auto;
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.3rem;
+      }
+
+      .results h2 {
+        font-size: 1rem;
+      }
+
+      input[type="text"] {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+
+      button, #printBtn {
+        font-size: 0.9rem;
+        padding: 10px;
+        width: 100%;
+      }
+
+      .results img {
+        max-width: 100%;
+      }
+
+      .notification_item h3 {
+        font-size: 0.95rem;
+      }
+      .notification_item p {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="head">Student Results Portal</h1>
+    <h1 id="clg_name" style="visibility: hidden;">{{ user.clg_name }}</h1>
+
+    <form id="form" method="POST">
+      {% csrf_token %}
+      <input type="text" name="reg_no" placeholder="Enter Registration Number" required>
+      <input type="text" id="dob" name="dob" placeholder="DD/MM/YYYY" required>
+      <button type="submit">Get Results</button>
+    </form>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if results %}
+    <div class="results">
+      <h2>Results for {{ user.name }} <br>(Reg No: {{ user.reg_no }}) <br>(Department: {{ user.department }})</h2>
+      {% for r in results %}
+        <div class="image-box">
+          <img src="{{ r.result.url }}" alt="Result Image">
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- ✅ Notification styled like Anna University -->
+  <div class="notification_box">
+    <div class="notification_header">📢 Notifications</div>
+    {% for not in notify %}
+      <div class="notification_item">
+        <h3>{{ not.Message }}</h3>
+        <p>Posted on: {{ not.created_at }}</p>
+      </div>
+    {% empty %}
+      <div class="notification_item">
+        <p>No notifications available.</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <button id="printBtn" onclick="printResults()">PRINT</button>
+
+  <script>
+  // Auto format DOB (DD/MM/YYYY)
+  const dobInput = document.getElementById('dob');
+  dobInput.addEventListener('input', function(e) {
+    let value = dobInput.value.replace(/\D/g, '');
+    if (value.length > 2 && value.length <= 4) {
+      value = value.slice(0,2) + '/' + value.slice(2);
+    } else if (value.length > 4) {
+      value = value.slice(0,2) + '/' + value.slice(2,4) + '/' + value.slice(4,8);
+    }
+    dobInput.value = value;
+  });
+
+  function printResults(){
+    const form = document.getElementById('form');
+    const head = document.getElementById('head');
+    const clg_name = document.getElementById('clg_name');
+    const notificationBox = document.querySelector(".notification_box");
+
+    // Hide elements before print
+    form.style.visibility = 'hidden';
+    head.style.visibility = 'hidden';
+    clg_name.style.visibility = 'visible';
+    if (notificationBox) notificationBox.style.display = 'none';
+
+    window.print();
+
+    // Restore after print
+    form.style.visibility = 'visible';
+    head.style.visibility = 'visible';
+    clg_name.style.visibility = 'hidden';
+    if (notificationBox) notificationBox.style.display = 'block';
+  }
+  </script>
+
+</body>
+</html>

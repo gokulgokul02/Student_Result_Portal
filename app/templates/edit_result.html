@@ -1,0 +1,18 @@
+{% extends 'admin_dashboard.html' %}
+{% block content %}
+<h3 style="text-align:center; color: #333; margin-bottom: 20px;">EDIT RESULT</h3>
+
+<form action="" method="POST" enctype="multipart/form-data" 
+      style="max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
+    {% csrf_token %}
+    
+    <label for="user" style="display:block; margin-bottom:10px; font-weight:bold;">Select User:</label>
+    <input type="text" name="user" value="{{ edit_result.Users.name }}">
+
+    <label for="result" style="display:block; margin-bottom:10px; font-weight:bold;">Upload Result:</label>
+    <input type="file" name="result" value="{{edit_result.result}}" id="result" style="width:100%; padding:10px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc;">
+
+    <input type="submit" value="Edit Result" 
+           style="width:100%; padding:10px; background-color:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">
+</form>
+{% endblock %}

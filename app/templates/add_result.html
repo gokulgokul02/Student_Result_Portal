@@ -1,0 +1,57 @@
+{% extends 'admin_dashboard.html' %}
+{% block content %}
+
+<h3 style="text-align:center; color:#2c3e50; margin-bottom:25px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size:26px; font-weight:600; letter-spacing:0.5px;">
+    ADD RESULT
+</h3>
+
+<form action="" method="POST" enctype="multipart/form-data"
+      style="max-width: 550px; margin: 0 auto; padding: 30px; border: 1px solid #e0e0e0; border-radius: 12px; background-color: #fff; box-shadow: 0px 4px 10px rgba(0,0,0,0.08); font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    {% csrf_token %}
+
+    <label for="user" style="display:block; margin-bottom:10px; font-weight:600; color:#34495e; font-size:15px;">Select User:</label>
+    <select name="user" id="user"
+            style="width:100%; padding:12px; margin-bottom:20px; border-radius:8px; border:1px solid #ccc; font-size:15px; transition: all 0.3s;">
+        {% for user in users %}
+        <option value="{{user.id}}">{{user.name}}</option>
+        {% endfor %}
+    </select>
+
+    <label for="result" style="display:block; margin-bottom:10px; font-weight:600; color:#34495e; font-size:15px;">Upload Result:</label>
+    <input type="file" name="result" id="result"
+           style="width:100%; padding:12px; margin-bottom:20px; border-radius:8px; border:1px solid #ccc; font-size:15px; cursor:pointer;">
+
+    <input type="submit" value="Add Result"
+           style="width:100%; padding:14px; background:linear-gradient(90deg,#4CAF50,#43A047); color:white; border:none; border-radius:8px; cursor:pointer; font-weight:600; font-size:16px; transition: all 0.3s;">
+</form>
+
+<!-- Results Table -->
+<div style="max-width: 900px; margin: 40px auto; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <table style="width:100%; border-collapse: collapse; text-align: center; box-shadow: 0px 4px 12px rgba(0,0,0,0.08); border-radius:10px; overflow:hidden;">
+        <thead style="background:linear-gradient(90deg,#4CAF50,#43A047); color:white; font-size:15px;">
+            <tr>
+                <th style="padding:14px; border:1px solid #ddd;">STUDENT NAME</th>
+                <th style="padding:14px; border:1px solid #ddd;">RESULT</th>
+                <th style="padding:14px; border:1px solid #ddd;">ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for result in result %}
+            <tr style="background-color: {% cycle '#fdfdfd' '#f7f9fb' %}; transition: background 0.3s;">
+                <td style="padding:12px; border:1px solid #eee; font-weight:500; color:#2c3e50;">{{result.Users.name}}</td>
+                <td style="padding:12px; border:1px solid #eee;">
+                    <img src="{{result.result.url}}" alt="Result" style="max-width:110px; border-radius:8px; border:1px solid #ccc; box-shadow:0 2px 5px rgba(0,0,0,0.08);">
+                </td>
+                <td style="padding:12px; border:1px solid #eee;">
+                    <a href="{% url 'edit_result' result.id %}"
+                       style="margin-right:15px; color:#1976D2; text-decoration:none; font-weight:600; transition:0.3s;">EDIT</a>
+                    <a href="{% url 'delete_result' result.id %}"
+                       style="color:#E53935; text-decoration:none; font-weight:600; transition:0.3s;">DELETE</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
